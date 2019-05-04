@@ -2,9 +2,11 @@
 
 $("#button").click(function(){
   $.ajax({
-    url:"http://0.0.0.0:6543/",
+    url:"http://127.0.0.1:6543/",
     success: function(result){
-      $("#div1").html(result);
+      const arr = JSON.parse(result)
+      const imgArr = arr.map(v => $(`<img src=${v} alt=${v}/>`))
+      $("#div1").html(imgArr);
     }
   });
 });

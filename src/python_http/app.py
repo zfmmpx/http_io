@@ -2,10 +2,16 @@ from wsgiref.simple_server import make_server
 from pyramid.config import Configurator
 from pyramid.response import Response
 from pyramid.events import NewRequest
+import json
 
+
+import get_pic_path_list
+
+picList = get_pic_path_list.get_pic_path_list()
+picListJson = json.dumps(picList)
 
 def hello_world(request):
-    return Response('Hellow World')
+    return Response(picListJson)
 
 def add_cors_headers_response_callback(event):
     def cors_headers(request, response):
